@@ -11,5 +11,13 @@
     ],
     "require": {
         "difra/difra": "7.0.x-dev"
+    },
+    "autoload": {
+        "files": [
+            "Plugin.php"
+        ],
+        "psr-4": {
+            "Difra\\Capcha\\": "src"
+        }
     }
 }

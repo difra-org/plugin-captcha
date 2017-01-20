@@ -17,3 +17,5 @@ class Plugin extends \Difra\Plugin
     {
     }
 }
+
+Plugin::enable();
