@@ -9,6 +9,9 @@
             "email": "nap@napych.com"
         }
     ],
+    "require": {
+        "difra/difra": "7.0"
+    },
     "require-dev": { 
         "difra/difra": "7.0.x-dev" 
     }
