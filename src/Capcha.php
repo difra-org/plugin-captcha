@@ -1,6 +1,6 @@
 <?php
 
-namespace Difra\Plugins;
+namespace Difra;
 
 use Difra\Envi\Session;
 
@@ -11,9 +11,13 @@ use Difra\Envi\Session;
  */
 class Capcha
 {
-    private $key = false;
+    /** @var string Last displayed key */
+    private $key = null;
+    /** @var int Width */
     private $sizeX = 140;
+    /** @var int Height */
     private $sizeY = 40;
+    /** @var int Key length */
     private $keyLength = 5;
 
     /**
@@ -23,7 +27,7 @@ class Capcha
     {
         // Load capcha key from session
         Session::start();
-        $this->key = isset($_SESSION['capcha_key']) ? $_SESSION['capcha_key'] : false;
+        $this->key = isset($_SESSION['capcha_key']) ? $_SESSION['capcha_key'] : null;
     }
 
     /**
@@ -32,8 +36,8 @@ class Capcha
      */
     public static function getInstance()
     {
-        static $_instance = null;
-        return $_instance ? $_instance : $_instance = new self;
+        static $instance = null;
+        return $instance ?: $instance = new self();
     }
 
     /**

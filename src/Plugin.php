@@ -8,14 +8,11 @@ namespace Difra\Capcha;
  */
 class Plugin extends \Difra\Plugin
 {
-    protected $provides = 'captcha';
-//    protected $require = '';
-    protected $version = 7;
-    protected $description = 'Captcha';
-
+    /**
+     * @inheritdoc
+     */
     protected function init()
     {
     }
 }
 
-Plugin::enable();

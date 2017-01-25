@@ -14,7 +14,10 @@
     },
     "autoload": {
         "files": [
-            "Plugin.php"
+            "main.php"
+        ],
+        "classmap": [
+            "src/Capcha.php"
         ],
         "psr-4": {
             "Difra\\Capcha\\": "src"
