@@ -1,6 +1,6 @@
 <?php
 
-namespace Difra\Plugins\Capcha;
+namespace Difra\Capcha;
 
 /**
  * Class Plugin
@@ -13,7 +13,7 @@ class Plugin extends \Difra\Plugin
     protected $version = 7;
     protected $description = 'Captcha';
 
-    public function init()
+    protected function init()
     {
     }
 }
