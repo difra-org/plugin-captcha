@@ -11,7 +11,7 @@ class CapchaController extends Difra\Controller
      */
     public function indexAction()
     {
-        $capcha = \Difra\Plugins\Capcha::getInstance();
+        $capcha = \Difra\Capcha::getInstance();
         $capcha->setSize(105, 36);
         //$Capcha->setKeyLength( 4 );
         header('Content-type: image/png');
