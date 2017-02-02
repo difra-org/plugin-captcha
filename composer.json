@@ -10,7 +10,11 @@
         }
     ],
     "require": {
-        "difra/difra": "7.0.x-dev"
+        "difra/difra": "~7.0.0"
+    },
+    "dist": {
+        "url": "https://www.difra.org/download/difra-users-1.0.0.zip",
+        "type": "zip"
     },
     "autoload": {
         "files": [
