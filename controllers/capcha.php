@@ -1,10 +1,8 @@
 <?php
 
-/**
- * Class CapchaController
- * Displays capchas.
- */
-class CapchaController extends Difra\Controller
+namespace Controller;
+
+class Capcha extends \Difra\Controller
 {
     /**
      * View capcha
