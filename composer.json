@@ -16,6 +16,12 @@
         "url": "https://github.com/difra-org/capcha/archive/1.0.0.zip",
         "type": "zip"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:difra-org/capcha.git"
+        }
+    ],
     "autoload": {
         "files": [
             "main.php"
