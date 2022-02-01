@@ -1,15 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Difra;
 
 use Difra\Envi\Session;
 
-/**
- * Class Capcha
- * Generates capcha images.
- * @package Difra\Libs
- */
-class Capcha
+class Captcha
 {
     /** @var string|null Last displayed key */
     private ?string $key = null;
@@ -25,16 +22,16 @@ class Capcha
      */
     private function __construct()
     {
-        // Load capcha key from session
+        // Load captcha key from session
         Session::start();
-        $this->key = $_SESSION['capcha_key'] ?? null;
+        $this->key = $_SESSION['captcha_key'] ?? null;
     }
 
     /**
      * Singleton
-     * @return Capcha
+     * @return Captcha
      */
-    public static function getInstance(): Capcha
+    public static function getInstance(): Captcha
     {
         static $instance = null;
         return $instance ?: $instance = new self();
@@ -51,7 +48,7 @@ class Capcha
     }
 
     /**
-     * Capcha generators
+     * Captcha generators
      */
 
     /** Gray blurred text */
@@ -101,7 +98,7 @@ class Capcha
                     $image->gaussianBlurImage(15, 3);
                     for ($n = 0; $n < strlen($text); $n++) {
                         $i = $order[$n];
-                        $draw->setFont(__DIR__ . '/Capcha/DejaVuSans.ttf');
+                        $draw->setFont(__DIR__ . '/fonts/DejaVuSans.ttf');
                         $draw->setFontSize(
                             $j ? rand($sizeY * 3 / 5, $sizeY * 5 / 6) : rand($sizeY * 4 / 6, $sizeY * 5 / 6)
                         );
@@ -134,55 +131,25 @@ class Capcha
         for ($i = 0; $i < $len; $i++) {
             $a .= $chars[rand(0, strlen($chars) - 1)];
         }
-        // exclude some character sequences from result
-        $bad = [
-            'mm',
-            'ww',
-            'mw',
-            'wm',
-            'huy',
-            'fuck',
-            'suka',
-            'huj',
-            'hui',
-            'blya',
-            'blia',
-            'blja',
-            'pidor',
-            'sex',
-            'suck',
-            'cyka',
-            'pee',
-            'pizd',
-            'pi3d',
-            'nu3g',
-            'fukk'
-        ];
-        $upA = strtolower($a);
-        foreach ($bad as $b) {
-            if (str_contains($upA, $b)) {
-                return $this->genKey($len);
-            }
-        }
         return $a;
     }
 
     /**
-     * Create capcha image with new key
+     * Create captcha image with new key
      * @return \Imagick
      * @throws \ImagickException|\ImagickDrawException
      */
-    public function viewCapcha(): \Imagick
+    public function viewCaptcha(): \Imagick
     {
         $this->key = $this->genKey($this->keyLength);
         $data = $this->mkCapcha($this->sizeX, $this->sizeY, $this->key);
         Session::start();
-        $_SESSION['capcha_key'] = $this->key;
+        $_SESSION['captcha_key'] = $this->key;
         return $data;
     }
 
     /**
-     * Set image size for $this->viewCapcha()
+     * Set image size for $this->viewCaptcha()
      * @param int $sizeX
      * @param int $sizeY
      */
@@ -193,7 +160,7 @@ class Capcha
     }
 
     /**
-     * Set key length for $this->viewCapcha()
+     * Set key length for $this->viewCaptcha()
      * @param int $n
      */
     public function setKeyLength(int $n): void

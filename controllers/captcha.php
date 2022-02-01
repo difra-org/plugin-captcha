@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Controller;
 
-class Capcha extends \Difra\Controller
+class Captcha extends \Difra\Controller
 {
     /**
-     * View capcha
+     * View captcha
      */
     public function indexAction()
     {
-        $capcha = \Difra\Capcha::getInstance();
-        $capcha->setSize(105, 36);
+        $captcha = \Difra\Captcha::getInstance();
+        $captcha->setSize(105, 36);
         //$Capcha->setKeyLength( 4 );
         header('Content-type: image/png');
         header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Some time in the past
@@ -18,7 +20,7 @@ class Capcha extends \Difra\Controller
         header("Cache-Control: no-store, no-cache, must-revalidate");
         header("Cache-Control: post-check=0, pre-check=0", false);
         header("Pragma: no-cache");
-        echo $capcha->viewCapcha();
+        echo $captcha->viewCaptcha();
         \Difra\View::$rendered = true;
     }
 }

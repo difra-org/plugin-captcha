@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Difra\Capcha;
+namespace Difra\Captcha;
 
 /**
  * Class Plugin
