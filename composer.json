@@ -1,25 +1,26 @@
 {
-    "name": "difra/capcha",
-    "description": "Capcha plugin for Difra framework",
+    "name": "difra/plugin-captcha",
+    "description": "Captcha plugin for Difra",
     "type": "library",
     "license": "BSD-2-Clause",
     "authors": [
         {
-            "name": "Eduard Kutuev",
-            "email": "nap@napych.com"
+            "name": "Ed Kutuev",
+            "email": "ed@napych.com"
         }
     ],
     "require": {
-        "difra/difra": "8.0.*"
+        "difra/difra": "8.0.*",
+        "ext-imagick": "*"
     },
     "dist": {
-        "url": "https://github.com/difra-org/capcha/archive/1.0.0.zip",
+        "url": "https://github.com/difra-org/plugin-captcha/archive/refs/tags/8.0.0.zip",
         "type": "zip"
     },
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:difra-org/capcha.git"
+            "url": "git@github.com:difra-org/plugin-captcha.git"
         }
     ],
     "autoload": {
@@ -27,7 +28,7 @@
             "main.php"
         ],
         "classmap": [
-            "src/Capcha.php"
+            "src/Captcha.php"
         ],
         "psr-4": {
             "Difra\\Capcha\\": "src"
