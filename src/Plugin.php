@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Difra\Capcha;
 
 /**
@@ -11,7 +13,7 @@ class Plugin extends \Difra\Plugin
     /**
      * @inheritdoc
      */
-    protected function init()
+    protected function init(): void
     {
     }
 }

@@ -11,14 +11,14 @@ use Difra\Envi\Session;
  */
 class Capcha
 {
-    /** @var string Last displayed key */
-    private $key = null;
+    /** @var string|null Last displayed key */
+    private ?string $key = null;
     /** @var int Width */
-    private $sizeX = 140;
+    private int $sizeX = 140;
     /** @var int Height */
-    private $sizeY = 40;
+    private int $sizeY = 40;
     /** @var int Key length */
-    private $keyLength = 5;
+    private int $keyLength = 5;
 
     /**
      * Constructor
@@ -27,14 +27,14 @@ class Capcha
     {
         // Load capcha key from session
         Session::start();
-        $this->key = isset($_SESSION['capcha_key']) ? $_SESSION['capcha_key'] : null;
+        $this->key = $_SESSION['capcha_key'] ?? null;
     }
 
     /**
      * Singleton
      * @return Capcha
      */
-    public static function getInstance()
+    public static function getInstance(): Capcha
     {
         static $instance = null;
         return $instance ?: $instance = new self();
@@ -45,7 +45,7 @@ class Capcha
      * @param string $inKey
      * @return bool
      */
-    public function verifyKey($inKey)
+    public function verifyKey(string $inKey): bool
     {
         return $this->key and strtoupper($this->key) == strtoupper($inKey);
     }
@@ -68,8 +68,9 @@ class Capcha
      * @param string $text
      * @param string $generator
      * @return \Imagick
+     * @throws \ImagickException|\ImagickDrawException
      */
-    public function mkCapcha($sizeX, $sizeY, $text, $generator = self::METHOD_DEFAULT)
+    public function mkCapcha(int $sizeX, int $sizeY, string $text, string $generator = self::METHOD_DEFAULT)
     {
         // init image
         $image = new \Imagick();
@@ -111,7 +112,7 @@ class Capcha
                             ($i - strlen($text) / 2) * $sizeX / (strlen($text) + 2.3),
                             0,
                             rand(-25, 25),
-                            $text{$i}
+                            $text[$i]
                         );
                         $image->gaussianBlurImage(1, 1);
                     }
@@ -126,12 +127,12 @@ class Capcha
      * @param int $len
      * @return string
      */
-    public function genKey($len)
+    public function genKey(int $len): string
     {
         $a = '';
         $chars = 'ACDEFGHJKLNPRUVXYacdhknpsuvxyz3467';
         for ($i = 0; $i < $len; $i++) {
-            $a .= $chars{rand(0, strlen($chars) - 1)};
+            $a .= $chars[rand(0, strlen($chars) - 1)];
         }
         // exclude some character sequences from result
         $bad = [
@@ -159,7 +160,7 @@ class Capcha
         ];
         $upA = strtolower($a);
         foreach ($bad as $b) {
-            if (false !== strpos($upA, $b)) {
+            if (str_contains($upA, $b)) {
                 return $this->genKey($len);
             }
         }
@@ -169,8 +170,9 @@ class Capcha
     /**
      * Create capcha image with new key
      * @return \Imagick
+     * @throws \ImagickException|\ImagickDrawException
      */
-    public function viewCapcha()
+    public function viewCapcha(): \Imagick
     {
         $this->key = $this->genKey($this->keyLength);
         $data = $this->mkCapcha($this->sizeX, $this->sizeY, $this->key);
@@ -184,7 +186,7 @@ class Capcha
      * @param int $sizeX
      * @param int $sizeY
      */
-    public function setSize($sizeX, $sizeY)
+    public function setSize(int $sizeX, int $sizeY): void
     {
         $this->sizeX = $sizeX;
         $this->sizeY = $sizeY;
@@ -192,9 +194,9 @@ class Capcha
 
     /**
      * Set key length for $this->viewCapcha()
-     * @param $n
+     * @param int $n
      */
-    public function setKeyLength($n)
+    public function setKeyLength(int $n): void
     {
         $this->keyLength = $n;
     }
