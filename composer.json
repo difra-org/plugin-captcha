@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "difra/difra": "~7.0.0"
+        "difra/difra": "8.0.*"
     },
     "dist": {
         "url": "https://github.com/difra-org/capcha/archive/1.0.0.zip",
