@@ -6,7 +6,7 @@ namespace Difra\Captcha;
 
 /**
  * Class Plugin
- * @package Difra\Plugins\Capcha
+ * @package Difra\Plugins\Captcha
  */
 class Plugin extends \Difra\Plugin
 {

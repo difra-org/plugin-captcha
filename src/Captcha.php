@@ -67,7 +67,7 @@ class Captcha
      * @return \Imagick
      * @throws \ImagickException|\ImagickDrawException
      */
-    public function mkCapcha(int $sizeX, int $sizeY, string $text, string $generator = self::METHOD_DEFAULT)
+    public function mkCaptcha(int $sizeX, int $sizeY, string $text, string $generator = self::METHOD_DEFAULT)
     {
         // init image
         $image = new \Imagick();
@@ -142,7 +142,7 @@ class Captcha
     public function viewCaptcha(): \Imagick
     {
         $this->key = $this->genKey($this->keyLength);
-        $data = $this->mkCapcha($this->sizeX, $this->sizeY, $this->key);
+        $data = $this->mkCaptcha($this->sizeX, $this->sizeY, $this->key);
         Session::start();
         $_SESSION['captcha_key'] = $this->key;
         return $data;
