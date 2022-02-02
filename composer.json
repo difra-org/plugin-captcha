@@ -14,7 +14,7 @@
         "ext-imagick": "*"
     },
     "dist": {
-        "url": "https://github.com/difra-org/plugin-captcha/archive/refs/tags/8.0.0.zip",
+        "url": "https://github.com/difra-org/plugin-captcha/archive/refs/tags/8.0.1.zip",
         "type": "zip"
     },
     "repositories": [
