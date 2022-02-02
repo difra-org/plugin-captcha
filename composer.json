@@ -31,7 +31,7 @@
             "src/Captcha.php"
         ],
         "psr-4": {
-            "Difra\\Capcha\\": "src"
+            "Difra\\Captcha\\": "src"
         }
     }
 }
